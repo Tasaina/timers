@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+        <h1 class="clickable" (click)="selectName()">{{timer.name}}</h1>
+    </div>
+    <div class="row">
+        <h2 class="clickable" (click)="selectTime()"><countdown #timerCountdown [config]="countdownConfig" (event)="timerEvent($event)"></countdown></h2>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <button class="btn btn-primary" (click)="startOrStop()"><a *ngIf="!running">Play</a><a *ngIf="running">Stop</a></button>
+        <button class="btn btn-primary" (click)="resetTimer()">Reset</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <a>Volume</a>
+        <app-volume-slider [volume]="this.timer.volume" (volumeChangedEvent)="changeVolume($event)"></app-volume-slider>
+        <button class="btn btn-outline-dark sound-test-button" (click)="playSound()">Test</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <a>Auto-Loop</a>
+          <input class="form-check-input mt-0" type="checkbox" [checked]="timer.looping" (change)="timer.looping=!timer.looping">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
