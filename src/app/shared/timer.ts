@@ -3,7 +3,7 @@ export class Timer {
   volume:number
   maxTime:number;
   looping:boolean;
-  notificationSound:string="../assets/notification_by_IENBA.wav";
+  notificationSound:string="assets/notification_by_IENBA.wav";
 
   toJson() {
     return {
