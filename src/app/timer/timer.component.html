@@ -7,13 +7,13 @@
         <h2 class="clickable" (click)="selectTime()"><countdown #timerCountdown [config]="countdownConfig" (event)="timerEvent($event)"></countdown></h2>
     </div>
     <div class="row">
-      <div class="col-5">
-        <button class="btn btn-primary" (click)="startOrStop()"><a *ngIf="!running">Play</a><a *ngIf="running">Stop</a></button>
+      <div class="col">
+        <button class="btn btn-primary" (click)="startOrStop()"><a *ngIf="!running">Start</a><a *ngIf="running">Stop</a></button>
         <button class="btn btn-primary" (click)="resetTimer()">Reset</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-5">
+      <div class="col">
         <a>Volume</a>
         <app-volume-slider [volume]="this.timer.volume" (volumeChangedEvent)="changeVolume($event)"></app-volume-slider>
         <button class="btn btn-outline-dark sound-test-button" (click)="playSound()">Test</button>

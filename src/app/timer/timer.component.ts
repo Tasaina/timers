@@ -89,15 +89,23 @@ export class TimerComponent implements OnInit {
 
   startOrStop() {
     if (this.running) {
-      this.timerCountdown?.pause();
-      this.running=false;
+      this.stop();
       return;
     }
+    this.start();
+  }
+
+  public start() {
     this.timerCountdown?.begin();
     this.running=true;
   }
 
-  resetTimer() {
+  public stop() {
+    this.timerCountdown?.pause();
+    this.running=false;
+  }
+
+  public resetTimer() {
     if (this.timerCountdown===undefined) return;
     this.timerCountdown.config.stopTime=this.timer.maxTime*60;
     this.timerCountdown.config.leftTime=this.timerCountdown.config.stopTime;

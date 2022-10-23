@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Timer } from './shared/timer';
+import { TimerComponent } from './timer/timer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { Timer } from './shared/timer';
 })
 export class AppComponent implements OnInit {
   timers:Timer[]=[];
+  @ViewChildren('timerComponent') timerComponents: QueryList<TimerComponent> | undefined;
 
   constructor() {
 
@@ -41,5 +43,18 @@ export class AppComponent implements OnInit {
   saveData() {
     const saveData = JSON.stringify(this.timers.map(t=>t.toJson()));
     localStorage.setItem("timers", saveData)
+  }
+
+  startAll() {
+    this.timerComponents?.forEach(tc=>tc.start());
+  }
+  pauseAll() {
+    this.timerComponents?.forEach(tc=>tc.stop());
+  }
+  resetAll() {
+    this.timerComponents?.forEach(tc=>tc.resetTimer());
+  }
+  deleteAll() {
+    this.timers=[];
   }
 }

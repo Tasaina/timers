@@ -1,16 +1,47 @@
 
-<div class="container float-left">
-  <button class="btn btn-success" (click)="newTimer()">New Timer</button>
-  <div class="row" *ngFor="let timer of timers">
-    <div class="col">
-      <app-timer (settingChangedEvent)="saveData()" [timer]="timer"></app-timer>
+<div class="container float-left" style="margin: 10px; margin-top: 60px;">
+  <div class="row">
+    <div class="col-1">
     </div>
-    <div class="row">
-      <div class="col-5">
-        <button class="btn btn-danger" (click)="removeTimer(timer)">Delete Timer</button>
+
+    <div class="col-3">
+      <div class="row">
+        <button class="btn btn-primary" (click)="newTimer()">New Timer</button>
       </div>
-    </div>
-    <div style="margin-top:30px"></div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="startAll()">Start All</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="pauseAll()">Stop All</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="resetAll()">Reset All</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" (click)="deleteAll()">Delete All</button>
+      </div>
+      </div>
+
+      <div class="col-1">
+      </div>
+
+        <div class="col">
+          <div class="row" *ngFor="let timer of timers">
+            <div class="col" >
+              <app-timer #timerComponent (settingChangedEvent)="saveData()" [timer]="timer"></app-timer>
+            </div>
+            <div class="row">
+              <div class="col-5">
+                <button class="btn btn-danger" (click)="removeTimer(timer)">Delete Timer</button>
+              </div>
+            </div>
+            <div style="margin-top:40px"></div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a href="https://freesound.org/people/IENBA/" target="_blank">Notification sound licensed under creative commons by IENBA</a>
+            </div>
+        </div>
+      </div>
   </div>
-  <span>Notification sound by IENBA</span>
 </div>
