@@ -23,7 +23,6 @@ export class TimerComponent implements OnInit {
   constructor(public dialog: MatDialog, private blinker: TabBlinker) {}
 
   ngOnInit(): void {
-    console.log("on init max time: "+this.timer.maxTime);
     this.timerSound.volume=this.timer.volume;
     this.timerSound.src=this.timer.notificationSound;
     this.timerSound.load();
@@ -40,6 +39,7 @@ export class TimerComponent implements OnInit {
       data: {name:this.timer.name}
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result===undefined) return;
       if ((result as string).length>0) this.timer.name=result;
       this.settingChangedEvent.emit();
     });
@@ -52,6 +52,7 @@ export class TimerComponent implements OnInit {
       data: {minutes:this.timer.maxTime}
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result===undefined) return;
       if ((result as number)/60<.001) return;
       this.timer.maxTime=result;
       this.resetTimer();

@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
     const saveData=localStorage.getItem("timers");
     if (saveData!=null) {
       const parsedData=<Timer[]>JSON.parse(saveData);
-      console.log(parsedData);
       parsedData.forEach(parsedTimer => {
         this.timers.push(new Timer(parsedTimer.name,parsedTimer.volume,parsedTimer.maxTime,parsedTimer.looping))
       });
